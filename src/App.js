@@ -504,6 +504,8 @@ function App() {
 		//Check if Metamask is installed
 		if (!window.ethereum) {
 			console.log("Metamask is required to use this DApp")
+			document.getElementById("UserAddress").textContent = "Metamask is required to use this DApp";
+			document.getElementById("UserToken").textContent = "Metamask is required to use this DApp";
 			return;
 		}
 
@@ -575,6 +577,11 @@ function App() {
 	}
 
 	async function onButtonClickMeta() {
+
+		if (recipientAddress == "" || tokenValue == "" || tokenReward == "") {	
+			document.getElementById("Signature1").textContent = "There are unfilled inputs!";
+			return NaN;
+		}
 
 		let tokenTotal = valueCorrection( parseFloat(tokenValue) + parseFloat(tokenReward) );
 		let nonce = await tokenContract.methods.nonces(userAddress).call();		//to prevent replay attack
