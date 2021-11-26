@@ -4,7 +4,7 @@ import Web3 from 'web3';
 import { Biconomy } from "@biconomy/mexa";
 
 //Smart Contract For Token Meta-transactions
-const contractAddress = "0x31a9f5203203af4FF71D56fb043B3ced4ee9eDb2"
+const contractAddress = "0xf4eBF87C0d8470e62B87CCc765d6ef790fBD9940"
 const contractAbi = [
 	{
 		"inputs": [
@@ -27,6 +27,31 @@ const contractAbi = [
 				"internalType": "uint256",
 				"name": "tokenReward",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenTotal",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deadline",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint8",
+				"name": "v",
+				"type": "uint8"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "r",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "s",
+				"type": "bytes32"
 			}
 		],
 		"name": "metaTransfer",
@@ -66,8 +91,8 @@ const contractAbi = [
 	}
 ]
 
-//Token used. Can be any token that inherits from ERC20Permit such as Dai Stablecoin and USD Coin on mainnet. 
-const tokencontractAddress = "0x01b40844C0C72fa43f981d15F3A875B801eD7e5C"
+//Token used. Can be any token that inherits from ERC20Permit such as Dai Stablecoin and USD Coin on mainnet. For this, we are using our custom token ChickenRiceToken (CRT)
+const tokencontractAddress = "0x782963dA2D963631bC75b2940bbCAB6B2ff3975B"
 const tokencontractAbi = [
 	{
 		"inputs": [],
@@ -100,81 +125,6 @@ const tokencontractAbi = [
 		"type": "event"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Transfer",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "DOMAIN_SEPARATOR",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "admin",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -201,25 +151,6 @@ const tokencontractAbi = [
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
 				"name": "amount",
 				"type": "uint256"
@@ -228,19 +159,6 @@ const tokencontractAbi = [
 		"name": "burn",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -310,38 +228,6 @@ const tokencontractAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "nonces",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -385,32 +271,6 @@ const tokencontractAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -433,6 +293,31 @@ const tokencontractAbi = [
 		],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -462,6 +347,146 @@ const tokencontractAbi = [
 		],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "DOMAIN_SEPARATOR",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "nonces",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]
 
@@ -481,10 +506,10 @@ const EIP712Domain = [
 ];
 
 const domainData = {
-	name: "Dai Coin", //Name initialized in coin using constructor
+	name: "ChickenRiceToken", //Name initialized in coin using constructor
 	version: "1",		//Version used by ERC20Permit	
 	chainId: "4", 	// Rinkeby
-	verifyingContract: "0x01b40844C0C72fa43f981d15F3A875B801eD7e5C", //tokenAddress
+	verifyingContract: "0x782963dA2D963631bC75b2940bbCAB6B2ff3975B", //tokenAddress
 };
 
 let web3;
@@ -510,7 +535,7 @@ function App() {
 		}
 
 		//Initialize Biconomy to use its relayer network. API Key required from Biconomy Dashboard. 
-		const biconomy = new Biconomy(window.ethereum, { apiKey: "6yawG_gFB.71f09ba2-fb4d-4994-87c3-17521e977a52" });
+		const biconomy = new Biconomy(window.ethereum, { apiKey: "lNC_q0xhw.d6f7c642-ef55-4787-87e9-132f717008bb" });
 		web3 = new Web3(biconomy);
 
 		biconomy.onEvent(biconomy.READY, async () => {
@@ -551,10 +576,10 @@ function App() {
 		//Display user's wallet token balance in dapp
 		balance = await tokenContract.methods.balanceOf(userAddress).call();
 		console.log("Wallet Balance:", balance);
-		//As Javascript maximum precision for number of decimals is only 17 and our TDT token requires 18, we are forced to slice and concat
+		//As Javascript maximum precision for number of decimals is only 17 and our CRT token requires 18, we are forced to slice and concat
 		//strings instead of simply dividing by power 10 to display accurate token balance user possess in their account. 
 		let display_balance = (balance.slice(0, balance.length - 18)).concat(".", balance.slice(-18));
-		document.getElementById("UserToken").textContent = "User Token (TDT): " + (display_balance);
+		document.getElementById("UserToken").textContent = "User Token (CRT): " + (display_balance);
 	}
 
 	function valueCorrection(value) {
@@ -602,9 +627,8 @@ function App() {
 		});
 
 		console.log("unsigned");
-		document.getElementById("Signature1").textContent = "Signature 1:"
-		document.getElementById("Signature2").textContent = "Signature 2:"
-		document.getElementById("Signature3").textContent = "Signature 3:"
+		document.getElementById("Signature1").textContent = "Confirm Message Details in MetaMask:"
+		// document.getElementById("Signature2").textContent = "Signature 2:"
 
 		web3.currentProvider.sendAsync(
 			{
@@ -626,22 +650,22 @@ function App() {
 				const v = parseInt(signature.substring(128, 130), 16);
 				
 				console.log("signed1");
-				document.getElementById("Signature1").textContent = "Signature 1: Signed!"
-				document.getElementById("Signature2").textContent = "Signature 2: Permitting token transaction, please sign and wait..."
+				document.getElementById("Signature1").textContent = "Confirm Message Details in MetaMask: Completed!"
+				document.getElementById("Signature2").textContent = "Send Message to Relayer: Processing..."
 
-				await tokenContract.methods.permit(userAddress, contractAddress, tokenTotal, deadline, v, r, s).send({from: userAddress});
+				// await tokenContract.methods.permit(userAddress, contractAddress, tokenTotal, deadline, v, r, s).send({from: userAddress});
 
-				let allowance = await tokenContract.methods.allowance(userAddress, contractAddress).call();
-				console.log("Allowance:", allowance);
+				// let allowance = await tokenContract.methods.allowance(userAddress, contractAddress).call();
+				// console.log("Allowance:", allowance);
 
-				console.log("signed2")
-				document.getElementById("Signature2").textContent = "Signature 2: Signed! Token transaction permitted!"
-				document.getElementById("Signature3").textContent = "Signature 3: Processing transaction, please sign and wait..."
+				// console.log("signed2")
+				// document.getElementById("Signature3").textContent = "Processing transaction, please wait..."
 
-				await contract.methods.metaTransfer(userAddress, recipientAddress, valueCorrection(tokenValue), valueCorrection(tokenReward)).send({from: userAddress});
+				await contract.methods.metaTransfer(userAddress, recipientAddress, valueCorrection(tokenValue), valueCorrection(tokenReward), tokenTotal, deadline, v, r, s).send({from: userAddress});
 				
-				console.log("signed3")
-				document.getElementById("Signature3").textContent = "Signature 3: Signed! Transaction completed!"
+				console.log("signed2")
+				document.getElementById("Signature2").textContent = "Send Message to Relayer: Completed!"
+				document.getElementById("Signature3").textContent = "Transaction completed!"
 				
 				updateUserDetails();
 			}
