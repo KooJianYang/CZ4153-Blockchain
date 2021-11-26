@@ -583,7 +583,6 @@ function App() {
 	}
 
 	function valueCorrection(value) {
-		console.log("value=",value)
 		if (value % 1 != 0) {
 			let result = ( value * Math.pow(10, 18) ).toString();
 			console.log("result=", result);
@@ -627,8 +626,9 @@ function App() {
 		});
 
 		console.log("unsigned");
-		document.getElementById("Signature1").textContent = "Confirm Message Details in MetaMask:"
-		// document.getElementById("Signature2").textContent = "Signature 2:"
+		document.getElementById("Signature1").textContent = "Confirm Message Details in MetaMask:" ;
+		document.getElementById("Signature2").textContent = "" ;
+		document.getElementById("Signature3").textContent = "" ;
 
 		web3.currentProvider.sendAsync(
 			{
