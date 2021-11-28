@@ -29,7 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 # Dapp Usage Instructions
 
-1. Once the Dapp is started and you are at the screen titled "Gasless Token Transfer", connect your Metamask wallet to the site and ensure that User Address and User Token reflects your account accurately. Refresh the page if necessary to see if the page is loading your account info properly.  
+1. Once the Dapp is started and you are at the screen titled "Gasless Token Transfer", connect your Metamask wallet (Rinkeby Test Network) to the site and ensure that User Address and User Token reflects your account accurately. Refresh the page if necessary to see if the page is loading your account info properly.  
 2. Enter the three inputs of Recipient Address, Amount to Send and Amount to give relayer. 
 3. Click submit button after verifying inputs are correct. 
 4. Check signature message details and sign.
