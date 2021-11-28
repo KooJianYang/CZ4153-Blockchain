@@ -2,7 +2,7 @@
 This project allows users to transfer tokens without possessing any ether by relying on third party relayers to call the contract on our behalf.
 
 # Biconomy
-We made used of Biconomy and its relayer network to enable gasless transaction. Our Dapp will take necessary inputs from users and required contract calls and convey it to relayers, letting them call the contract on our behalf. 
+We made used of [Biconomy](https://github.com/bcnmy/mexa) and its relayer network to enable gasless transaction. Our Dapp will take necessary inputs from users and required contract calls and convey it to relayers, letting them call the contract on our behalf. 
 
 # ERC20 Tokens
 Our Dapp works only with ERC20 tokens that inherits from ERC20Permit such as Dai Stablecoin and USD Coin on Ethereum Mainnet. This is because for a true gasless token transaction experience, users need to allow our smart contract to transfer token on users' behalf. In other words, users need to either "approve" or "permit" our smart contract to transfer their token. Since "approve" requires the user to call the token contract itself, it requires ether and is therefore not truely considered "gasless". Hence, "permit" is a necessary function for our Dapp to work. 
@@ -10,6 +10,7 @@ Our Dapp works only with ERC20 tokens that inherits from ERC20Permit such as Dai
 # ChickenRiceToken (CRT)
 To test out our Dapp, an ERC20 token of our own is deployed on Rinkeby Testnet. This token inherits from ERC20Permit and fully functions with our Dapp. Full token contract codes are inside contracts folder. Take note that the Dapp as it is only works with ChickenRiceToken. Should you be using another ERC20 token that inherits permit, the constants "tokencontractAddress", "tokencontractAbi" and "domainData" should be changed in src/App.js
 
+Token: [ChickenRiceToken](https://rinkeby.etherscan.io/token/0x782963da2d963631bc75b2940bbcab6b2ff3975b)
 Token Address: 0x782963dA2D963631bC75b2940bbCAB6B2ff3975B
 
 # Create React App
