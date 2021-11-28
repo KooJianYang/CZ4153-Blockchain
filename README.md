@@ -11,6 +11,7 @@ Our Dapp works only with ERC20 tokens that inherits from ERC20Permit such as Dai
 To test out our Dapp, an ERC20 token of our own is deployed on Rinkeby Testnet. This token inherits from ERC20Permit and fully functions with our Dapp. Full token contract codes are inside contracts folder. Take note that the Dapp as it is only works with ChickenRiceToken. Should you be using another ERC20 token that inherits permit, the constants "tokencontractAddress", "tokencontractAbi" and "domainData" should be changed in src/App.js
 
 Token: [ChickenRiceToken](https://rinkeby.etherscan.io/token/0x782963da2d963631bc75b2940bbcab6b2ff3975b)
+
 Token Address: 0x782963dA2D963631bC75b2940bbCAB6B2ff3975B
 
 # Create React App
