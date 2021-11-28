@@ -8,7 +8,7 @@ We made used of Biconomy and its relayer network to enable gasless transaction. 
 Our Dapp works only with ERC20 tokens that inherits from ERC20Permit such as Dai Stablecoin and USD Coin on Ethereum Mainnet. This is because for a true gasless token transaction experience, users need to allow our smart contract to transfer token on users' behalf. In other words, users need to either "approve" or "permit" our smart contract to transfer their token. Since "approve" requires the user to call the token contract itself, it requires ether and is therefore not truely considered "gasless". Hence, "permit" is a necessary function for our Dapp to work. 
 
 # ChickenRiceToken (CRT)
-To test out our Dapp, an ERC20 token of our own is deployed on Rinkeby Testnet. This token inherits from ERC20Permit and fully functions with our Dapp. Full token contract codes are inside contracts folder.
+To test out our Dapp, an ERC20 token of our own is deployed on Rinkeby Testnet. This token inherits from ERC20Permit and fully functions with our Dapp. Full token contract codes are inside contracts folder. Take note that the Dapp as it is only works with ChickenRiceToken. Should you be using another ERC20 token that inherits permit, the constants "tokencontractAddress", "tokencontractAbi" and "domainData" should be changed in src/App.js
 
 Token Address: 0x782963dA2D963631bC75b2940bbCAB6B2ff3975B
 
@@ -24,3 +24,13 @@ or
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+# Dapp Usage Instructions
+
+1. Once the Dapp is started and you are at the screen titled "Gasless Token Transfer", connect your Metamask wallet to the site and ensure that User Address and User Token reflects your account accurately. Refresh the page if necessary to see if the page is loading your account info properly.  
+2. Enter the three inputs of Recipient Address, Amount to Send and Amount to give relayer. 
+3. Click submit button after verifying inputs are correct. 
+4. Check signature message details and sign.
+5. Sign message hash to be sent to relayer.
+6. Wait while transaction is process. It can take up to 1-2 minutes.
+7. Once transaction is completed, token balance is updated and you can verify it on your Metamask wallet. 
